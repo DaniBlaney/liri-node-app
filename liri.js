@@ -92,6 +92,27 @@ var userInput = function (commands, results){
     case "concert-this":
         concertThis(results);
         break;
-    case ""
+    case "doThis":
+        doThis();
+        break;
+      default:
+      console.log("Invalid command. Please try again")
   }
+};
+
+//reads text from random.txt file
+var doThis = function(){
+  fs.readFile("random.txt", "utf8", function (err, data){
+    if (err) throw err;
+      var randomText = data.split(",");
+
+    if (randomText.length == 2) {
+      userInput(randomText[0], randomText[1]);
+    }
+    else if (randomText.length == 1) {
+      userInput(randomText[0]);
+    }
+  });
 }
+
+userInput(command, input);
