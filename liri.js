@@ -1,9 +1,8 @@
 var dotenv = require("dotenv").config();
-
 var keys = require("./keys.js");
-//var Spotify = require('node-spotify-api')
-//var request = require('request')
-//var fs = require('fs')
+var Spotify = require('node-spotify-api')
+var request = require('request')
+var fs = require('fs')
 
 
 var spotify = new Spotify(keys.spotify);
@@ -32,4 +31,26 @@ function spotifySong(musicSearch) {
       };
     };
   });
-}
+spotifySong();
+
+//ombd movie-this
+function movieThis (movieQuery) {
+
+  if (movieQuery === undefined || null){
+    movieQuery = "";
+  }
+
+  var queryURL = "http://www.omdbapi.com/?t=" + movieQuery + "&y=&plot=short&apikey=trilogy";
+  console.log(queryURL)
+
+  request(queryURL, function(error, response, body){
+    if (!error && response.statusCode === 200){
+      var movieData = JSON.parse(body);
+        console.log("Movie Title: " + movieData.Title + "\nYear: " + movieData.released
+        + "\nIMBD Rating: " + movieData.imbdRating + "\nRotten Tomatoes Rating: " +
+        movieData.Ratings[1].Value + "\nCountry: " + movieData.Country + "\nLanguage: " +
+        movieData.Language + "\nPlot: " + movieData.Plot + "\nActors: " + movieData.Actors)
+    };
+  });
+};
+movieThis();
