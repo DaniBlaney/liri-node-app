@@ -19,13 +19,13 @@ var input = process.argv[3];
 function spotifySong(musicSearch) {
 
   if (musicSearch === undefined || null) {
-    musicSearch = ""The Sign" by Ace of Base";
+    musicSearch = "The Sign";
   }
 
-  spotify.search({type: 'track', query: musicSearch}, function (err, data)
+  spotify.search({type: 'track', query: musicSearch}, function (err, data){
     if (err) {
       return console.log('Error occurred: ' + err);
-    }
+    };
     else {
       for (i = 0; i < data.tracks.items.length && i < 5; i++){
 
@@ -34,7 +34,7 @@ function spotifySong(musicSearch) {
           + musicQuery.name + "\nAlbum Name: " + musicQuery.album.name);
       };
     });
-
+  }
   };
 spotifySong();
 
@@ -42,7 +42,7 @@ spotifySong();
 function movieThis (movieQuery) {
 
   if (movieQuery === undefined || null){
-    movieQuery = "If you haven't watched 'Mr. Nobody', then you should!";
+    movieQuery = "Mr. Nobody";
   }
 
   var queryUrl = "http://www.omdbapi.com/?t=" + movieQuery + "&y=&plot=short&apikey=trilogy";
@@ -103,7 +103,7 @@ var userInput = function (commands, results){
 //reads text from random.txt file
 var doThis = function(){
   fs.readFile("random.txt", "utf8", function (err, data){
-    if (err) throw err;
+    if (error) throw err;
       var randomText = data.split(",");
 
     if (randomText.length == 2) {
