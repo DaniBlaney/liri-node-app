@@ -2,7 +2,7 @@
 
 ##LIRI is a Language Interpretation and Recognition Interface.
 LIRI is a command line node app takes in parameters to search Spotify for songs, Bands in town for concerts and OMBD for movies.
---------------------------------------------------------
+
 ## How to use
 Use node to run this program. Use node liri.js then run one of the following comands, then add search text:
 
