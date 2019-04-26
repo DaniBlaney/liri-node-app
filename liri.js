@@ -19,7 +19,7 @@ var input = process.argv[3];
 function spotifySong(musicSearch) {
 
   if (musicSearch === undefined || null) {
-    musicSearch = "";
+    musicSearch = ""The Sign" by Ace of Base";
   }
 
   spotify.search({type: 'track', query: musicSearch}, function (err, data)
@@ -42,7 +42,7 @@ spotifySong();
 function movieThis (movieQuery) {
 
   if (movieQuery === undefined || null){
-    movieQuery = "";
+    movieQuery = "If you haven't watched 'Mr. Nobody', then you should!";
   }
 
   var queryUrl = "http://www.omdbapi.com/?t=" + movieQuery + "&y=&plot=short&apikey=trilogy";
@@ -80,3 +80,18 @@ function concertThis(bandQuery){
   });
 
 };
+
+var userInput = function (commands, results){
+  switch(commands){
+    case "spotify-this-song":
+        spotifySong(results);
+        break;
+    case "movie-this":
+        movieThis(results);
+        break;
+    case "concert-this":
+        concertThis(results);
+        break;
+    case ""
+  }
+}
