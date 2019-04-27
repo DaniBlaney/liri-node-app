@@ -17,7 +17,7 @@ node liri.js movie-this Lord of the Rings
 
 ### When concert-this command is used you will be provided with:
 
-![Concert-this](concertthis.png)
+<kbd>![Concert-this](concertthis.png)</kbd>
 
 * Name of the venue
 * Venue location
@@ -25,7 +25,7 @@ node liri.js movie-this Lord of the Rings
 
 ### When spotify-this-song command is used you will be provided with:
 
-![Spotify-this](spotifythis.png)
+<kbd>![Spotify-this](spotifythis.png)</kbd>
 
 * Artist(s)
 * The song's name
@@ -49,7 +49,7 @@ node liri.js movie-this Lord of the Rings
 
 ### When doThis command:
 
-![Do-this](dothis.png)
+<kbd>![Do-this](dothis.png)</kbd>
 
 A random.txt file with search for spotify-this-song will give you the spotify results of "I want it that way."
 
