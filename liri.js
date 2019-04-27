@@ -29,48 +29,26 @@ console.log(inputTopic);
         break;
   };
 
-//get spotify keys
-var spotify = new Spotify(keys.spotify);
+
 // spotify this song
 function spotifySong(inputTopic){
-  search: function({ type: 'artist OR album OR track', query: 'My search query', limit: 20 }, callback);
-  spotify.request('https://api.spotify.com/v1/search?q=track:' + songName + '&type=track&limit=10', function(error, response) {
+    //get spotify keys
+  var spotify = new Spotify(keys.spotify);
 
-  spotify.search({type: 'track', query: inputTopic}, function(err,data){
+  spotify.search({type: 'track', query: inputTopic}, function(err, data){
     if (err) {
       return console.log('Error occurred: ' + err);
     }
     else
-      for (var i = 0; i < data.tracks.items.length && i < 5; i++){
+      for (var i = 0; i < data.tracks.items.length; i++){
 
         var musicQuery = data.tracks.items[i];
         console.log("Artist: " + musicQuery.artists[0].name + "\nSong Name: "
           + musicQuery.name + "\nAlbum Name: " + musicQuery.album.name);
       };
   });
-  };
 };
 
-// function spotifySong(musicSearch) {
-
-//   if (musicSearch === undefined || null) {
-//     musicSearch = "The Sign";
-//   }
-
-//   spotify.search({type: 'track', query: musicSearch}, function (err, data){
-//     if (err) {
-//       return console.log('Error occurred: ' + err);
-//     };
-//     else {
-//       for (i = 0; i < data.tracks.items.length && i < 5; i++){
-
-//         var musicQuery = data.tracks.items[i];
-//           console.log("Artist: " + musicQuery.artists[0].name + "\nSong Name: "
-//           + musicQuery.name + "\nAlbum Name: " + musicQuery.album.name);
-//       };
-//     });
-//   }
-//   };
 // spotifySong();
 
 //ombd movie-this
