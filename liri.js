@@ -10,7 +10,8 @@ moment().format();
 
 //variable for input
 var userInput = process.argv[2];
-var inputTopic = process.argv[3];
+var inputTopic = process.argv.slice(3).join(" ");
+console.log(inputTopic);
 
 
   switch(userInput){
@@ -26,7 +27,7 @@ var inputTopic = process.argv[3];
     case "doThis":
         doThis();
         break;
-  }
+  };
 
 //get spotify keys
 var spotify = new Spotify(keys.spotify);
@@ -44,9 +45,9 @@ function spotifySong(song){
         var musicQuery = data.tracks.items[i];
         console.log("Artist: " + musicQuery.artists[0].name + "\nSong Name: "
           + musicQuery.name + "\nAlbum Name: " + musicQuery.album.name);
-      }
-  })
-}
+      };
+  });
+};
 
 // function spotifySong(musicSearch) {
 
@@ -71,27 +72,31 @@ function spotifySong(song){
 // spotifySong();
 
 //ombd movie-this
-function movieThis (movieQuery) {
+function movieThis (response) {
 
-  if (movieQuery === undefined || null){
-    movieQuery = inputTopic;
-  }
+  // if (movieQuery === undefined || null){
+  //   movieQuery = inputTopic;
+  // }
 
-  var queryUrl = "http://www.omdbapi.com/?t=" + movieQuery + "&y=&plot=short&apikey=trilogy";
-  console.log(queryUrl)
+  var queryUrl = "http://www.omdbapi.com/?t=" + inputTopic + "&y=&plot=short&apikey=trilogy";
+  console.log(queryUrl);
 
-  axios.get(queryUrl, function(error, response, body){
-    if (!error && response.statusCode === 200){
-      var movieData = JSON.parse(body);
-        console.log("Movie Title: " + movieData.Title + "\nYear: " + movieData.released
-        + "\nIMBD Rating: " + movieData.imbdRating + "\nRotten Tomatoes Rating: " +
-        movieData.Ratings[1].Value + "\nCountry: " + movieData.Country + "\nLanguage: " +
-        movieData.Language + "\nPlot: " + movieData.Plot + "\nActors: " + movieData.Actors)
-    };
-  });
+  var x = response.data;
 
+  axios.get(queryUrl).then(function(response){
+   console.log(x[0].Title);
+    // if (!error && response.statusCode === 200){
+    //   var movieData = JSON.parse(response);
+    //   console.log(response.data[0].Title);
+        // console.log("Movie Title: " + movieData.Title + "\nYear: " + movieData.released
+        // + "\nIMBD Rating: " + movieData.imbdRating + "\nRotten Tomatoes Rating: " +
+        // movieData.Ratings[1].Value + "\nCountry: " + movieData.Country + "\nLanguage: " +
+        // movieData.Language + "\nPlot: " + movieData.Plot + "\nActors: " + movieData.Actors)
+    });
 };
-movieThis();
+
+
+// movieThis();
 
 // Bands in Town concertThis
 function concertThis(bandQuery){
