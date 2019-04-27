@@ -63,8 +63,8 @@ function movieThis(inputTopic) {
 
   axios.get(queryUrl).then(function(response){
     var movieData = response.data;
-        console.log("Movie Title: " + movieData.Title + "\nYear: " + movieData.released
-        + "\nIMBD Rating: " + movieData.imbdRating + "\nRotten Tomatoes Rating: " +
+        console.log("Movie Title: " + movieData.Title + "\nYear: " + movieData.Year
+        + "\nIMBD Rating: " + movieData.imdbRating + "\nRotten Tomatoes Rating: " +
         movieData.Ratings[1].Value + "\nCountry: " + movieData.Country + "\nLanguage: " +
         movieData.Language + "\nPlot: " + movieData.Plot + "\nActors: " + movieData.Actors)
 
@@ -95,7 +95,7 @@ function concertThis(inputTopic){
 //reads text from random.txt file
 function doThis(){
   fs.readFile("random.txt", "utf8", function (err, data){
-   
+
       var randomText = data.split(",");
       console.log(randomText);
 
