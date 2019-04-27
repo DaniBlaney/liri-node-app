@@ -35,7 +35,7 @@ node liri.js movie-this Lord of the Rings
 
 ### When movie-this command is used you will be provided with:
 
-    ![Movie-this](moviethis.png)
+<kbd>![Movie-this](moviethis.png)</kbd>
 
 * Title of the movie.
 * Year the movie came out.
