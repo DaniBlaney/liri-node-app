@@ -72,29 +72,28 @@ function spotifySong(song){
 // spotifySong();
 
 //ombd movie-this
-function movieThis (response) {
+function movieThis (inputTopic) {
 
-  // if (movieQuery === undefined || null){
-  //   movieQuery = inputTopic;
-  // }
+  if (inputTopic === undefined || null){
+    inputTopic = "Mr. Nobdy";
+  }
 
   var queryUrl = "http://www.omdbapi.com/?t=" + inputTopic + "&y=&plot=short&apikey=trilogy";
+  // var queryUrl = "http://www.omdbapi.com/?t=up&y=&plot=short&apikey=trilogy";
+
   console.log(queryUrl);
 
-  var x = response.data;
+
 
   axios.get(queryUrl).then(function(response){
-   console.log(x[0].Title);
-    // if (!error && response.statusCode === 200){
-    //   var movieData = JSON.parse(response);
-    //   console.log(response.data[0].Title);
-        // console.log("Movie Title: " + movieData.Title + "\nYear: " + movieData.released
-        // + "\nIMBD Rating: " + movieData.imbdRating + "\nRotten Tomatoes Rating: " +
-        // movieData.Ratings[1].Value + "\nCountry: " + movieData.Country + "\nLanguage: " +
-        // movieData.Language + "\nPlot: " + movieData.Plot + "\nActors: " + movieData.Actors)
+    var movieData = response.data;
+        console.log("Movie Title: " + movieData.Title + "\nYear: " + movieData.released
+        + "\nIMBD Rating: " + movieData.imbdRating + "\nRotten Tomatoes Rating: " +
+        movieData.Ratings[1].Value + "\nCountry: " + movieData.Country + "\nLanguage: " +
+        movieData.Language + "\nPlot: " + movieData.Plot + "\nActors: " + movieData.Actors)
+
     });
 };
-
 
 // movieThis();
 
