@@ -44,10 +44,7 @@ node liri.js movie-this Lord of the Rings
 ### When doThis command:
 A random.txt file with search for spotify-this-song will give you the spotify results of "I want it that way."
 
-
-<video width="320" height="240" controls>
-  <source src="demoLiriNode.webm" type="video/mp4">
-</video>
+[![Watch the demo video](liridemoscreen.png)](https://drive.google.com/file/d/1YaEromw8-bKrMDWGdGqi5C3X54wC4k8A/view?usp=sharing)
 
 ### Technologies Used
 * JavaScript
