@@ -95,16 +95,10 @@ function concertThis(inputTopic){
 //reads text from random.txt file
 function doThis(){
   fs.readFile("random.txt", "utf8", function (err, data){
-    // if (error){throw err;
+   
       var randomText = data.split(",");
-      for (var i = 0; i < output.length; i++){
-        console.log(output[i]);
-      }
-    // if (randomText.length == 2) {
-    //   userInput(randomText[0], randomText[1]);
-    // }
-    // else if (randomText.length == 1) {
-    //   userInput(randomText[0]);
-    //  }
-  });
-}
+      console.log(randomText);
+
+      });
+
+    }
