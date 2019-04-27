@@ -83,7 +83,7 @@ function concertThis(inputTopic){
 
       var concertData = response.data[0];
       // console.log(concertData);
-      var momentData = moment(concertData.Date).format('MM/DD/YYYY')
+      var momentData = moment(concertData.datetime).format('MM/DD/YYYY')
       console.log("Venue Name: " + concertData.venue.name + "\nVenue Location: " + concertData.venue.city +
       "," + concertData.venue.country + "\nDate of the Event: " + momentData);
 
