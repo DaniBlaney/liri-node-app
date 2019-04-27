@@ -1,54 +1,86 @@
-var dotenv = require("dotenv").config();
+require("dotenv").config();
 var keys = require("./keys.js");
-var Spotify = require('node-spotify-api')
-var request = require('request')
-var fs = require('fs')
+var Spotify = require('node-spotify-api');
+var axios = require('axios');
+var fs = require('fs');
 
 //moment
 var moment = require('moment');
 moment().format();
 
+//variable for input
+var userInput = process.argv[2];
+var inputTopic = process.argv[3];
+
+
+  switch(userInput){
+    case "spotify-this-song":
+        spotifySong(inputTopic);
+        break;
+    case "movie-this":
+        movieThis(inputTopic);
+        break;
+    case "concert-this":
+        concertThis(inputTopic);
+        break;
+    case "doThis":
+        doThis();
+        break;
+  }
+
 //get spotify keys
 var spotify = new Spotify(keys.spotify);
 
-//variable for input
-var command = process.argv[2];
-var input = process.argv[3];
-
 // spotify this song
-function spotifySong(musicSearch) {
-
-  if (musicSearch === undefined || null) {
-    musicSearch = "The Sign";
-  }
-
-  spotify.search({type: 'track', query: musicSearch}, function (err, data){
+// spotify.request('https://api.spotify.com/v1/search?q=track:' + songName + '&type=track&limit=10', function(error, songResponse) {
+function spotifySong(song){
+  spotify.search({type: 'track', query: song}, function(err,data){
     if (err) {
       return console.log('Error occurred: ' + err);
-    };
-    else {
-      for (i = 0; i < data.tracks.items.length && i < 5; i++){
+    }
+    else
+      for (var i = 0; i < data.tracks.items.length; i++){
 
         var musicQuery = data.tracks.items[i];
-          console.log("Artist: " + musicQuery.artists[0].name + "\nSong Name: "
+        console.log("Artist: " + musicQuery.artists[0].name + "\nSong Name: "
           + musicQuery.name + "\nAlbum Name: " + musicQuery.album.name);
-      };
-    });
-  }
-  };
-spotifySong();
+      }
+  })
+}
+
+// function spotifySong(musicSearch) {
+
+//   if (musicSearch === undefined || null) {
+//     musicSearch = "The Sign";
+//   }
+
+//   spotify.search({type: 'track', query: musicSearch}, function (err, data){
+//     if (err) {
+//       return console.log('Error occurred: ' + err);
+//     };
+//     else {
+//       for (i = 0; i < data.tracks.items.length && i < 5; i++){
+
+//         var musicQuery = data.tracks.items[i];
+//           console.log("Artist: " + musicQuery.artists[0].name + "\nSong Name: "
+//           + musicQuery.name + "\nAlbum Name: " + musicQuery.album.name);
+//       };
+//     });
+//   }
+//   };
+// spotifySong();
 
 //ombd movie-this
 function movieThis (movieQuery) {
 
   if (movieQuery === undefined || null){
-    movieQuery = "Mr. Nobody";
+    movieQuery = inputTopic;
   }
 
   var queryUrl = "http://www.omdbapi.com/?t=" + movieQuery + "&y=&plot=short&apikey=trilogy";
   console.log(queryUrl)
 
-  request(queryUrl, function(error, response, body){
+  axios.get(queryUrl, function(error, response, body){
     if (!error && response.statusCode === 200){
       var movieData = JSON.parse(body);
         console.log("Movie Title: " + movieData.Title + "\nYear: " + movieData.released
@@ -81,38 +113,20 @@ function concertThis(bandQuery){
 
 };
 
-var userInput = function (commands, results){
-  switch(commands){
-    case "spotify-this-song":
-        spotifySong(results);
-        break;
-    case "movie-this":
-        movieThis(results);
-        break;
-    case "concert-this":
-        concertThis(results);
-        break;
-    case "doThis":
-        doThis();
-        break;
-      default:
-      console.log("Invalid command. Please try again")
-  }
-};
 
 //reads text from random.txt file
-var doThis = function(){
+function doThis(){
   fs.readFile("random.txt", "utf8", function (err, data){
     if (error) throw err;
       var randomText = data.split(",");
-
-    if (randomText.length == 2) {
-      userInput(randomText[0], randomText[1]);
-    }
-    else if (randomText.length == 1) {
-      userInput(randomText[0]);
-    }
+      for (var i = 0; i < output.length; i++){
+        console.log(output[i]);
+      }
+    // if (randomText.length == 2) {
+    //   userInput(randomText[0], randomText[1]);
+    // }
+    // else if (randomText.length == 1) {
+    //   userInput(randomText[0]);
+    // }
   });
 }
-
-userInput(command, input);
