@@ -81,12 +81,11 @@ function concertThis(inputTopic){
   axios.get(queryUrl).then(function(response){
     // if (!error && response.statusCode ===200){
 
-      var concertData = response.data;
-      console.log(concertData);
-      var concertDateTime = concertData[0].data.time;
-      var momentDateTime = moment().format('L');
-      console.log("Venue Name: " + concertData[0].venue.name + "\nVenue Location: " + concertData[0].venue.city +
-      "," + concertData[0].venue.country + "\nDate of the Event: " + momentDateTime);
+      var concertData = response.data[0];
+      // console.log(concertData);
+      var momentData = moment(concertData.Date).format('MM/DD/YYYY')
+      console.log("Venue Name: " + concertData.venue.name + "\nVenue Location: " + concertData.venue.city +
+      "," + concertData.venue.country + "\nDate of the Event: " + momentData);
 
   });
 
@@ -96,7 +95,7 @@ function concertThis(inputTopic){
 //reads text from random.txt file
 function doThis(){
   fs.readFile("random.txt", "utf8", function (err, data){
-    if (error) throw err;
+    // if (error){throw err;
       var randomText = data.split(",");
       for (var i = 0; i < output.length; i++){
         console.log(output[i]);
@@ -106,6 +105,6 @@ function doThis(){
     // }
     // else if (randomText.length == 1) {
     //   userInput(randomText[0]);
-    // }
+    //  }
   });
 }
