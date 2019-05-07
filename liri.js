@@ -13,21 +13,32 @@ var userInput = process.argv[2];
 var inputTopic = process.argv.slice(3).join(" ");
 console.log(inputTopic);
 
-
-  switch(userInput){
-    case "spotify-this-song":
-        spotifySong(inputTopic);
-        break;
-    case "movie-this":
-        movieThis(inputTopic);
-        break;
-    case "concert-this":
-        concertThis(inputTopic);
-        break;
-    case "doThis":
-        doThis();
-        break;
-  };
+switch(userInput){
+  case "spotify-this-song":
+    if (inputTopic){
+      spotifySong(inputTopic);
+    } else {
+      spotifySong("The Sign Ace of Base")
+    }
+      break;
+  case "movie-this":
+    if (inputTopic){
+      movieThis(inputTopic);
+    } else {
+      movieThis("Mr.Nobody")
+    }
+      break;
+  case "concert-this":
+    if (inputTopic){
+      concertThis(inputTopic);
+    } else {
+      concertThis("Radioactive")
+    }
+      break;
+  case "doThis":
+      doThis();
+      break;
+};
 
 
 // spotify this song
