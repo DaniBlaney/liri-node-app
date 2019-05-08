@@ -18,21 +18,21 @@ switch(userInput){
     if (inputTopic){
       spotifySong(inputTopic);
     } else {
-      spotifySong("The Sign Ace of Base")
+      spotifySong("The Sign Ace of Base");
     }
       break;
   case "movie-this":
     if (inputTopic){
       movieThis(inputTopic);
     } else {
-      movieThis("Mr.Nobody")
+      movieThis("Mr.Nobody");
     }
       break;
   case "concert-this":
     if (inputTopic){
       concertThis(inputTopic);
     } else {
-      concertThis("Radioactive")
+      concertThis("Radioactive");
     }
       break;
   case "doThis":
@@ -50,13 +50,12 @@ function spotifySong(inputTopic){
     if (err) {
       return console.log('Error occurred: ' + err);
     }
-    else
-      for (var i = 0; i < data.tracks.items.length; i++){
+    else{
 
-        var musicQuery = data.tracks.items[i];
+        var musicQuery = data.tracks.items[0];
         console.log("Artist: " + musicQuery.artists[0].name + "\nSong Name: "
           + musicQuery.name + "\nAlbum Name: " + musicQuery.album.name);
-      };
+    };
   });
 };
 
