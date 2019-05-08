@@ -54,7 +54,7 @@ function spotifySong(inputTopic){
 
         var musicQuery = data.tracks.items[0];
         console.log("Artist: " + musicQuery.artists[0].name + "\nSong Name: "
-          + musicQuery.name + "\nAlbum Name: " + musicQuery.album.name);
+          + musicQuery.name + "\nAlbum Name: " + musicQuery.album.name + "\nPreview Link: " + musicQuery.preview_url);
     };
   });
 };
@@ -63,10 +63,6 @@ function spotifySong(inputTopic){
 
 //ombd movie-this
 function movieThis(inputTopic) {
-
-  if (inputTopic === undefined || null){
-    inputTopic = "Mr. Nobdy";
-  }
 
   var queryUrl = "http://www.omdbapi.com/?t=" + inputTopic + "&y=&plot=short&apikey=trilogy";
   console.log(queryUrl);
@@ -89,7 +85,6 @@ function concertThis(inputTopic){
   console.log(queryUrl);
 
   axios.get(queryUrl).then(function(response){
-    // if (!error && response.statusCode ===200){
 
       var concertData = response.data[0];
       // console.log(concertData);
